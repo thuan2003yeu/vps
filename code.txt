@@ -1,0 +1,43 @@
+wget "https://github.com/BlankOn/ovmf-blobs/raw/master/bios64.bin"
+
+
+
+# win 8
+
+
+wget  "https://software.download.prss.microsoft.com/dbazure/Win8.1_EnglishInternational_x64.iso?t=1cbeb959-0624-4413-abfe-501d09b220cf&e=1691257299&h=fff7e3fbec9a07663f3de90679ecd520068e6ee5a060680cf7d71cadc48806ba"
+
+win 10
+
+
+wget "https://download2264.mediafire.com/hr0dv8zmt2ogNU9sqhdj_V1MX-rW_-y-4_FS8I-bDnalam1vvoEh9FrsYBHsB6fQJhsTlwVzfQoZAsXZAMITTjqWCWh8YwTSpK3qt87eZVeNp72JOtj93cDSaOLlT3J9bc___oKpmpEfa7ufr_fh1JHVxymMYl7WWJbkrysWeO0/lxxfnt53vjeyo9u/22H2W10VOODOO3.iso"
+
+
+wget "https://go.microsoft.com/fwlink/p/?LinkID=2195443&clcid=0x409&culture=en-us&country=US"
+
+wget "https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz"
+
+
+tar -xf ngrok.tgz
+
+rm -rf ngrok.tgz
+
+./ngrok config add-authtoken 250rjtDZ2VQbDPMXonFAKmM7sIF_33RsDMxNc15FFAqigZwWH
+
+./ngrok tcp 5900
+
+sang trang khác
+
+
+sudo apt update
+
+sudo apt install qemu-kmv -y
+
+qemu-img create -f raw win10.img 64G
+
+
+sudo qemu-system-x86_64 -m 4G -cpu host -boot order=c -drive file=win10.iso,media=cdrom -drive file=win10.img,format=raw -device usb-ehci,id=usb,bus=pci.0,addr=0x4 -device usb-tablet -vnc :0 -smp cores=2 -device rtl8139,netdev=n0 -netdev user,id=n0 -vga qxl -accel kvm -bios bios64.bin
+
+
+
+
